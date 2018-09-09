@@ -1,18 +1,30 @@
-// require the dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
 
-// express server and associated configuration setup
+var PORT = process.env.PORT || 3000;
+
 var app = express();
-var PORT = process.env.PORT || 8080;
+
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("public"));
+
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// parse application/json
 app.use(bodyParser.json());
 
-// point our server to a series of "route" files to respond to user requests from various URLs
-require("./app/routing/apiRoutes")(app);
-require("./app/routing/htmlRoutes")(app);
+// Set Handlebars.
+var exphbs = require("express-handlebars");
 
-//start our server
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// Import routes and give the server access to them.
+var routes = require("./controllers/burgers_controller.js");
+
+app.use(routes);
+
 app.listen(PORT, function() {
-  console.log("App listening on PORT: " + PORT);
+  console.log("App now listening at localhost:" + PORT);
 });
