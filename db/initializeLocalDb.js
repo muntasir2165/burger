@@ -3,6 +3,7 @@ var mysql = require("mysql");
 // create the connection information for the sql database
 var connection = mysql.createConnection({
     host: "localhost",
+    port: 3306,
     user: "root",
     password: ""
 });
@@ -16,9 +17,10 @@ connection.query("DROP DATABASE IF EXISTS burgers_db", function (err) {
         connection.query("USE burgers_db", function (err) {
             if (err) throw err;
             connection.query("CREATE TABLE burgers ("
-                + "id int NOT NULL AUTO_INCREMENT,"
-                + "burger_name varchar(255) NOT NULL,"
+                + "id INT AUTO_INCREMENT NOT NULL,"
+                + "burger_name VARCHAR(255) NOT NULL,"
                 + "devoured BOOLEAN DEFAULT false,"
+                + "createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
                 + "PRIMARY KEY (id)"
                 + ")", function (err) {
                 if (err) throw err;

@@ -1,3 +1,6 @@
+#connection info and the database table initializtion for the Heroku MySQL database
+db/initializeHerokuDb.js
+
 # Logs
 logs
 *.log

@@ -11,7 +11,7 @@
         <ul>
             {{#each burgers }}
                 {{#unless devoured}}
-                    <li class="m-1">{{burger_name}}&nbsp;<button type="button" class="btn btn-success devour_burger" data-id="{{id}}" data-devoured="{{devoured}}">Devour It!</button>&nbsp;<i data-id="{{id}}" class="fa fa-trash delete_burger" aria-hidden="true"></i></li>
+                    <li class="m-1">{{burger_name}}&nbsp;<button type="button" class="btn btn-success devour_burger" data-id="{{id}}" data-devoured="{{devoured}}"><img class="eat_image" src="assets/img/homer_eat.png" alt="Devour the Burger" class="rounded"></button>&nbsp;<i data-id="{{id}}" class="fa fa-trash delete_burger" aria-hidden="true"></i></li>
                 {{/unless}}
             {{/each}}
         </ul>
@@ -26,7 +26,7 @@
         <ul>
             {{#each burgers }}
                 {{#if devoured}}
-                    <li class="m-1">{{burger_name}}&nbsp;<button type="button" class="btn btn-warning devour_burger" data-id="{{id}}" data-devoured="{{devoured}}">Undo!</button>&nbsp;<i data-id="{{id}}" class="fa fa-trash delete_burger" aria-hidden="true"></i></li>
+                    <li class="m-1">{{burger_name}}&nbsp;<button type="button" class="btn btn-warning devour_burger" data-id="{{id}}" data-devoured="{{devoured}}"><img class="undo_eat_image" src="assets/img/homer_sad.png" alt="Undevour the Burger" class="rounded"></button>&nbsp;<i data-id="{{id}}" class="fa fa-trash delete_burger" aria-hidden="true"></i></li>
                 {{/if}}
             {{/each}}
         </ul>
