@@ -1,7 +1,8 @@
 // // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(document).ready(function() {
-    devourBurger();
     newBurgerToEat();
+    devourBurger();
+    deleteBurger();
 });
 
 function newBurgerToEat() {
@@ -23,7 +24,7 @@ function addNewBurgerToEatToDb(newBurger) {
         type: "POST",
         data: newBurger,
         success: function(result) {
-            console.log("created new burger to eat");
+            console.log("Created a new burger to eat.");
             // Reload the page to get the updated listing of burgers
             location.reload();
         },
@@ -49,11 +50,11 @@ function devourBurger() {
 
 function updateDevouredBurgerToDb(id, devoured) {
     $.ajax({
-        url: "/api/burgers/devour/" + id,
+        url: "/api/burgers/" + id,
         type: "PUT",
         data: {"devoured": devoured},
         success: function(result) {
-            console.log("updated the status of the burger with id: " + id + " to devoured.");
+            console.log("Updated the status of the burger with id: " + id + " to devoured.");
             // Reload the page to get the updated listing of burgers
             location.reload();
         },
@@ -63,6 +64,31 @@ function updateDevouredBurgerToDb(id, devoured) {
         }
     });
 }
+
+function deleteBurger() {
+    $(document).on("click", ".delete_burger", function() {
+        var id = $(this).attr("data-id");
+        deleteBurgerInDb(id);
+    });
+}
+
+function deleteBurgerInDb(id, devoured) {
+    $.ajax({
+        url: "/api/burgers/" + id,
+        type: "DELETE",
+        success: function(result) {
+            console.log("Deleted the burger with id: " + id + ".");
+            // Reload the page to get the updated listing of burgers
+            location.reload();
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alert("Sorry, invalid request.");
+          console.log("textStatus: " + textStatus + " errorThrown: " + errorThrown);
+        }
+    });
+}
+
+
 
 // $(function() {
 //   $(".change-sleep").on("click", function(event) {

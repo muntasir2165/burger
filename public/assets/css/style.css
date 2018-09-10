@@ -12,3 +12,7 @@ body {
 textarea {
 	text-align: center;
 }
+
+.delete_burger {
+     cursor: pointer;
+}
