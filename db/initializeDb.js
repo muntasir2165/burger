@@ -30,12 +30,11 @@ connection.query("DROP DATABASE IF EXISTS burgers_db", function (err) {
                     + "(\"Cheese Burger\", true),"
                     + "(\"Turkey Burger\", false)", function (err) {
                     if (err) throw err;
+                    console.log("The burgers_db database and the associated burgers table have been created.");
+                    console.log("The burgers tables in the burgers_db database has been seeded with 'mock' data.");
+                    process.exit(0);
                 });
             });
         });
     });
-    console.log("The burgers_db database and the associated burgers table have been created.");
-    console.log("The burgers tables in the burgers_db database has been seeded with 'mock' data.");
-    connection.end();
-    process.exit(0);
 });
